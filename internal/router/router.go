@@ -12,6 +12,7 @@ type router struct {
 }
 
 type Router interface {
+	Serve() error
 }
 
 func New(h handlers.Handler) Router {
@@ -24,4 +25,8 @@ func New(h handlers.Handler) Router {
 	}
 
 	return router
+}
+
+func (r *router) Serve() error {
+	return http.ListenAndServe(":8080", r)
 }

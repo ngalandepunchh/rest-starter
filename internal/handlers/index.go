@@ -2,6 +2,8 @@ package handlers
 
 import (
 	"net/http"
+
+	"github.com/hunterpunchh/starter/internal/responses"
 )
 
 type indexHandler struct {
@@ -16,13 +18,7 @@ func NewIndexHandler() IndexHandler {
 }
 
 func (h *indexHandler) GetStatus(w http.ResponseWriter, r *http.Request) {
-	resp := struct {
-		Status string `json:"status"`
-	}{
-		Status: "ok",
-	}
-
+	resp := responses.Status{Status: responses.StatusOK}
 	_ = WriteJSON(w, resp, http.StatusOK)
-
 	return
 }

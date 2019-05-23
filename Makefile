@@ -7,8 +7,17 @@ help: ## This help
 
 .DEFAULT_GOAL := help
 
-build: ## Build the container
+build: ## Build the container(s)
 	docker build -t $(APP_NAME) -f ./build/Dockerfile .
 
 run: ## Run the container
-	docker run -i -t --rm --name="$(APP_NAME)" $(APP_NAME)
+	docker run -d -p 8080:8080 --rm --name="$(APP_NAME)" $(APP_NAME)
+
+stop: ## Stop running container(s)
+	docker stop $(APP_NAME)
+
+up: ## Compose the container(s)
+	docker-compose -f ./build/docker-compose.yml up -d
+
+down: ## Take down the composed container(s)
+	docker-compose -f ./build/docker-compose.yml down

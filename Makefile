@@ -17,7 +17,7 @@ stop: ## Stop running container(s)
 	docker stop $(APP_NAME)
 
 up: ## Compose the container(s)
-	docker-compose -f ./build/docker-compose.yml up -d
+	docker-compose -f ./deployments/docker-compose.yml up -d
 
 down: ## Take down the composed container(s)
-	docker-compose -f ./build/docker-compose.yml down
+	docker-compose -f ./deployments/docker-compose.yml down

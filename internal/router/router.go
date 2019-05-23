@@ -3,8 +3,9 @@ package router
 import (
 	"net/http"
 
-	"github.com/go-chi/chi"
 	"github.com/hunterpunchh/starter/internal/handlers"
+
+	"github.com/go-chi/chi"
 )
 
 type router struct {

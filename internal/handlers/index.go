@@ -11,6 +11,7 @@ type indexHandler struct {
 
 type IndexHandler interface {
 	GetStatus(w http.ResponseWriter, r *http.Request)
+	GetHealthz(w http.ResponseWriter, r *http.Request)
 }
 
 func NewIndexHandler() IndexHandler {
@@ -18,6 +19,12 @@ func NewIndexHandler() IndexHandler {
 }
 
 func (h *indexHandler) GetStatus(w http.ResponseWriter, r *http.Request) {
+	resp := responses.Status{Status: responses.StatusOK}
+	_ = WriteJSON(w, resp, http.StatusOK)
+	return
+}
+
+func (h *indexHandler) GetHealthz(w http.ResponseWriter, r *http.Request) {
 	resp := responses.Status{Status: responses.StatusOK}
 	_ = WriteJSON(w, resp, http.StatusOK)
 	return

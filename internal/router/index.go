@@ -11,5 +11,6 @@ import (
 func newIndexRouter(h handlers.IndexHandler) http.Handler {
 	r := chi.NewRouter()
 	r.Get("/status", h.GetStatus)
+	r.Get("/status", h.GetHealthz)
 	return r
 }

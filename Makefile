@@ -1,4 +1,4 @@
-APP_NAME=starter
+APP_NAME=rest-starter
 
 .PHONY: help build
 

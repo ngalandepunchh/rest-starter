@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/hunterpunchh/starter/internal/responses"
+	"github.com/hunterpunchh/rest-starter/internal/responses"
 )
 
 type indexHandler struct {

@@ -1,7 +1,7 @@
 package main
 
-import "github.com/hunterpunchh/starter/cmd/starter"
+import "github.com/hunterpunchh/rest-starter/cmd/server"
 
 func main() {
-	starter.Run()
+	server.Run()
 }

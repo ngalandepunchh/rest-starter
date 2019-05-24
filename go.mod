@@ -1,4 +1,4 @@
-module github.com/hunterpunchh/starter
+module github.com/hunterpunchh/rest-starter
 
 go 1.12
 

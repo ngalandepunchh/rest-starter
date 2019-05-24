@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 
-	"github.com/hunterpunchh/starter/internal/handlers"
+	"github.com/hunterpunchh/rest-starter/internal/handlers"
 
 	"github.com/go-chi/chi"
 )

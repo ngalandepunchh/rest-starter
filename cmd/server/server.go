@@ -7,6 +7,7 @@ import (
 	"go.uber.org/dig"
 )
 
+// Run configures, builds, and runs a new server
 func Run() {
 	c := dig.New()
 

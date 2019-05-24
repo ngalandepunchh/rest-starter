@@ -15,8 +15,8 @@ type IndexHandler interface {
 	GetHealthz(w http.ResponseWriter, r *http.Request)
 }
 
-// NewIndexHandler creates and returns a new IndexHandler
-func NewIndexHandler() IndexHandler {
+// newIndexHandler creates and returns a new IndexHandler
+func newIndexHandler() IndexHandler {
 	return &indexHandler{}
 }
 

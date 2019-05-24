@@ -17,7 +17,7 @@ type Handler interface {
 // New creates and returns a new Handler
 func New() Handler {
 	return &handler{
-		IndexHandler: NewIndexHandler(),
+		IndexHandler: newIndexHandler(),
 	}
 }
 

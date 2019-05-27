@@ -11,3 +11,9 @@ const (
 type Status struct {
 	Status string `json:"status"`
 }
+
+// Healthz is a struct defining the status of dependent services
+type Healthz struct {
+	Status            string `json:"status"`
+	GRPCStarterStatus string `json:"grpcStarterStatus"`
+}

@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"context"
-	"log"
 	"net/http"
 	"time"
 
@@ -40,11 +39,15 @@ func (h *indexHandler) GetStatus(w http.ResponseWriter, r *http.Request) {
 func (h *indexHandler) GetHealthz(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	resp, err := h.GrpcStarterClient.Status(ctx, &statuspb.StatusRequest{})
+	resp := &responses.Healthz{}
+	grpcStarterStatus, err := h.GrpcStarterClient.Status(ctx, &statuspb.StatusRequest{})
 	if err != nil {
-		log.Println(err)
-		_ = WriteJSON(w, nil, http.StatusInternalServerError)
+		resp.Status = responses.StatusError
+		resp.GRPCStarterStatus = grpcStarterStatus.GetStatus()
+		_ = WriteJSON(w, resp, http.StatusInternalServerError)
 	}
+	resp.Status = responses.StatusOK
+	resp.GRPCStarterStatus = grpcStarterStatus.GetStatus()
 	_ = WriteJSON(w, resp, http.StatusOK)
 	return
 }

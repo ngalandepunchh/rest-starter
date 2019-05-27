@@ -3,6 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+
+	statuspb "github.com/hunterpunchh/grpc-starter/pkg/status"
 )
 
 type handler struct {
@@ -15,10 +17,12 @@ type Handler interface {
 }
 
 // New creates and returns a new Handler
-func New() Handler {
-	return &handler{
-		IndexHandler: newIndexHandler(),
+func New(grpcStarterClient statuspb.GrpcStarterClient) Handler {
+	handler := &handler{
+		IndexHandler: newIndexHandler(grpcStarterClient),
 	}
+
+	return handler
 }
 
 // WriteJSON sets the status code and writes data to the given ResponseWriter

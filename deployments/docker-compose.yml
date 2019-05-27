@@ -1,8 +1,12 @@
 version: '3'
 services:
-  starter:
+  grpc-starter:
+    image: grpc-starter
+  rest-starter:
     build:
       context: ../
       dockerfile: ./build/Dockerfile
     ports:
       - "8080:8080"
+    depends_on:
+      - grpc-starter

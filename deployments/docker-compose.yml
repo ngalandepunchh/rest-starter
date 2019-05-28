@@ -2,11 +2,20 @@ version: '3'
 services:
   grpc-starter:
     image: grpc-starter
+    ports:
+      - "50051"
+    networks:
+      - backend
   rest-starter:
     build:
       context: ../
       dockerfile: ./build/Dockerfile
     ports:
       - "8080:8080"
+    networks:
+      - backend
     depends_on:
       - grpc-starter
+networks:
+  backend:
+    driver: bridge

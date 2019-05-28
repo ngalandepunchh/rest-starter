@@ -45,6 +45,7 @@ func (h *indexHandler) GetHealthz(w http.ResponseWriter, r *http.Request) {
 		resp.Status = responses.StatusError
 		resp.GRPCStarterStatus = grpcStarterStatus.GetStatus()
 		_ = WriteJSON(w, resp, http.StatusInternalServerError)
+		return
 	}
 	resp.Status = responses.StatusOK
 	resp.GRPCStarterStatus = grpcStarterStatus.GetStatus()

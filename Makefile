@@ -1,4 +1,5 @@
 APP_NAME=rest-starter
+DOCKER_NETWORK=punchh
 
 .PHONY: help build
 
@@ -8,10 +9,10 @@ help: ## This help
 .DEFAULT_GOAL := help
 
 build: ## Build the container(s)
-	docker build -t $(APP_NAME) -f ./build/Dockerfile .
+	docker build --rm -t $(APP_NAME) -f ./build/Dockerfile .
 
 run: stop ## Run the container
-	docker run -d -p 8080:8080 --rm --name="$(APP_NAME)" $(APP_NAME)
+	docker run -d -p 8080:8080 --rm --name="$(APP_NAME)" --net="$(DOCKER_NETWORK)" $(APP_NAME)
 
 stop: ## Stop running container(s)
 	docker stop $(APP_NAME) || true

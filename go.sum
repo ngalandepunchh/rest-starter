@@ -16,6 +16,7 @@ github.com/hunterpunchh/grpc-starter v0.0.0-20190524205636-aeaf16c7293d h1:wZrdc
 github.com/hunterpunchh/grpc-starter v0.0.0-20190524205636-aeaf16c7293d/go.mod h1:evi4hKeXUT3i08ZooObW58VpjRBmzG9rZVRgh0NjfOw=
 github.com/hunterpunchh/grpc-starter v0.0.0-20190525020151-ecbb1636d114 h1:Fe8cR9AP2e3GrNDxMML/qIolZy5JpSLBjPw5lPC9Ung=
 github.com/hunterpunchh/grpc-starter v0.0.0-20190525020151-ecbb1636d114/go.mod h1:evi4hKeXUT3i08ZooObW58VpjRBmzG9rZVRgh0NjfOw=
+github.com/hunterpunchh/grpc-starter v0.0.0-20190528145930-1811a047db13 h1:kdbsJj0JZs1CazDOgh5de+ikRYsg1J0JJCYuR+yWvwg=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

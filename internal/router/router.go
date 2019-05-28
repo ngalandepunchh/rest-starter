@@ -25,6 +25,9 @@ func New(h handlers.Handler) Router {
 
 	r.Mount("/", newIndexRouter(h))
 
+	r.NotFound(h.NotFound)
+	r.MethodNotAllowed(h.MethodNotAllowed)
+
 	router := &router{
 		Handler: r,
 	}

@@ -16,7 +16,7 @@ func Run() {
 	c := dig.New()
 
 	_ = c.Provide(func() (statuspb.GrpcStarterClient, error) {
-		conn, err := grpc.Dial("172.17.0.2:50051", grpc.WithInsecure())
+		conn, err := grpc.Dial("grpc-starter:50051", grpc.WithInsecure())
 		if err != nil {
 			panic(err)
 		}

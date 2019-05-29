@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-grpc-starter: See https://github.com/hunterpunchh/grpc-starter for setup
+* grpc-starter: See https://github.com/hunterpunchh/grpc-starter for setup
 
 ## Setup
 

@@ -16,7 +16,7 @@ type router struct {
 // Router implements the http.Handler interface
 type Router interface {
 	http.Handler
-	Serve() error
+	Serve(string) error
 }
 
 // New creates a Router from a given handler.Handler
@@ -36,6 +36,6 @@ func New(h handlers.Handler) Router {
 }
 
 // Serve listens on port :8080 and serves the given requests
-func (r *router) Serve() error {
-	return http.ListenAndServe(":8080", r)
+func (r *router) Serve(port string) error {
+	return http.ListenAndServe(":"+port, r)
 }

@@ -40,15 +40,15 @@ func (h *indexHandler) GetHealthz(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	resp := &responses.Healthz{}
-	grpcStarterStatus, err := h.GrpcStarterClient.Status(ctx, &statuspb.StatusRequest{})
+	_, err := h.GrpcStarterClient.Status(ctx, &statuspb.StatusRequest{})
 	if err != nil {
 		resp.Status = responses.StatusError
-		resp.GRPCStarterStatus = grpcStarterStatus.GetStatus()
+		resp.GRPCStarterStatus = responses.StatusError // grpcStarterStatus.GetStatus()
 		_ = WriteJSON(w, resp, http.StatusInternalServerError)
 		return
 	}
 	resp.Status = responses.StatusOK
-	resp.GRPCStarterStatus = grpcStarterStatus.GetStatus()
+	resp.GRPCStarterStatus = responses.StatusOK // grpcStarterStatus.GetStatus()
 	_ = WriteJSON(w, resp, http.StatusOK)
 	return
 }

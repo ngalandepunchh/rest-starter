@@ -1,35 +1,27 @@
 package middleware
 
 import (
-	"context"
 	"net/http"
 	"time"
 
 	"go.uber.org/zap"
 )
 
-type ContextKey string
-
-const loggerContextKey ContextKey = "logger"
-
-func RegisterLogger(next http.Handler, l *zap.SugaredLogger) http.Handler {
-	fn := func(w http.ResponseWriter, r *http.Request) {
-		r.WithContext(context.WithValue(r.Context(), loggerContextKey, l))
-		next.ServeHTTP(w, r)
-	}
-	return http.HandlerFunc(fn)
-}
-
 func Log(next http.Handler, l *zap.SugaredLogger) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
 		rww := NewResponseWriterWrapper(w)
 		start := time.Now()
 		defer func() {
+			duration := time.Since(start)
 			l.Infow(
 				"Handling request",
-				"bytes", rww.Bytes(),
+				"bytesIn", r.ContentLength,
+				"bytesOut", rww.Bytes(),
+				"host", r.Host,
+				"remote", r.RemoteAddr,
 				"status", rww.Status(),
-				"time", time.Since(start),
+				"duration", uint64(duration/1000),
+				"durationHuman", duration,
 			)
 		}()
 		next.ServeHTTP(rww, r)

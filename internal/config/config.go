@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 )
 
@@ -13,7 +12,6 @@ type Config struct {
 
 // New creates a config from the defined environment variables
 func New() *Config {
-	log.Println(os.Environ())
 	port, _ := os.LookupEnv("PORT")
 	grpcStarterAddress, _ := os.LookupEnv("GRPC_STARTER_ADDRESS")
 
@@ -21,8 +19,6 @@ func New() *Config {
 		Port:               port,
 		GRPCStarterAddress: grpcStarterAddress,
 	}
-
-	log.Println(cfg)
 
 	return cfg
 }

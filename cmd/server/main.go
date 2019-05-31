@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	// Internal
@@ -15,7 +15,7 @@ import (
 )
 
 // Run configures, builds, and runs a new server
-func Run() {
+func main() {
 	c := dig.New()
 
 	_ = c.Provide(config.New)

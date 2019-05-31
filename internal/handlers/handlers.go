@@ -5,9 +5,11 @@ import (
 	"net/http"
 
 	statuspb "github.com/hunterpunchh/grpc-starter/pkg/status"
+	"go.uber.org/zap"
 )
 
 type handler struct {
+	logger *zap.SugaredLogger
 	IndexHandler
 }
 
@@ -19,9 +21,10 @@ type Handler interface {
 }
 
 // New creates and returns a new Handler
-func New(grpcStarterClient statuspb.GrpcStarterClient) Handler {
+func New(grpcStarterClient statuspb.GrpcStarterClient, l *zap.SugaredLogger) Handler {
 	handler := &handler{
-		IndexHandler: newIndexHandler(grpcStarterClient),
+		logger:       l,
+		IndexHandler: newIndexHandler(grpcStarterClient, l),
 	}
 
 	return handler

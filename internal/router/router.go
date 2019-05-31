@@ -3,13 +3,18 @@ package router
 import (
 	"net/http"
 
+	// Internal
 	"github.com/hunterpunchh/rest-starter/internal/handlers"
+	"github.com/hunterpunchh/rest-starter/internal/middleware"
 
+	// External
 	"github.com/go-chi/chi"
+	"go.uber.org/zap"
 )
 
 type router struct {
 	http.Handler
+	logger *zap.SugaredLogger
 }
 
 // Router defines an interface for interacting with the router
@@ -20,7 +25,7 @@ type Router interface {
 }
 
 // New creates a Router from a given handler.Handler
-func New(h handlers.Handler) Router {
+func New(h handlers.Handler, l *zap.SugaredLogger) Router {
 	r := chi.NewRouter()
 
 	r.Mount("/", newIndexRouter(h))
@@ -30,12 +35,15 @@ func New(h handlers.Handler) Router {
 
 	router := &router{
 		Handler: r,
+		logger:  l,
 	}
+
+	router.Handler = middleware.Log(router.Handler, router.logger)
 
 	return router
 }
 
-// Serve listens on port :8080 and serves the given requests
+// Serve listens and serves requests on the provided port
 func (r *router) Serve(port string) error {
 	return http.ListenAndServe(":"+port, r)
 }

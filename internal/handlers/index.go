@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/hunterpunchh/rest-starter/internal/responses"
+	"go.uber.org/zap"
 
 	statuspb "github.com/hunterpunchh/grpc-starter/pkg/status"
 )
@@ -21,7 +22,7 @@ type IndexHandler interface {
 }
 
 // newIndexHandler creates and returns a new IndexHandler
-func newIndexHandler(client statuspb.GrpcStarterClient) IndexHandler {
+func newIndexHandler(client statuspb.GrpcStarterClient, l *zap.SugaredLogger) IndexHandler {
 	return &indexHandler{
 		GrpcStarterClient: client,
 	}

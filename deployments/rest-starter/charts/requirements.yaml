@@ -1,4 +1,0 @@
-dependencies:
-  - name: grpc-starter
-    version: 0.0.1
-    repository: http://example.com/charts

@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ include "rest-starter.fullname" . }}
 data:
-  PORT: {{ .Values.service.port }}
+  PORT: {{ .Values.service.port | quote }}
